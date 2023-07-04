@@ -27,8 +27,6 @@ export const InputSelect:FC<InputProps> = ({
     type,
 }) => {
 
-    console.log(value)
-
     const [open, setOpen] = useState<boolean>(false)
     const [valueSelect, setValueSelect] = useState<string>(value !== "" ? value : placeholder)
     

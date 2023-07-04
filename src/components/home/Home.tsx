@@ -10,20 +10,22 @@ import { Page } from "../UI/page/Page";
 
 import { useAppSelector } from "@/app/store/hooks/useType";
 import { useActions } from "@/app/store/hooks/useActions";
+import { info } from "console";
 
 export const HomePage:FC = () => {
 
-    const { values } = useAppSelector(state => state.auth)
-    const { valuesUser } = useAppSelector(state => state.user)
-    const { saveValue } = useActions()
+    const { information } = useAppSelector(state => state.signIn)
+    const { authInf} = useActions()
 
-    const [phone, setPhone] = useState<string>(values.phone)
-    const [email, setEmail] = useState<string>(values.email)
+    const [phone, setPhone] = useState<string>(information.phone)
+    const [email, setEmail] = useState<string>(information.email)
     const [disabled, setDisabled] = useState<boolean>(true)
+
+    console.log(information)
 
     useEffect(() => {
         if(phone !== "" && email !== ""){
-            saveValue({phone, email})
+            authInf({phone, email})
             setDisabled(false)
         } else setDisabled(true)
     }, [phone, email])
@@ -52,8 +54,8 @@ export const HomePage:FC = () => {
                         className="flex justify-center items-center md:w-[80px] w-[40px] md:h-[80px] h-[40px] rounded-full bg-c_blue-light"
                     >
                         <div className="md:text-[40px] text-[25px] font-normal leading-[52px] font-mont text-c_blue-grey">
-                            {valuesUser.name !== '' ? valuesUser.name[0] : "N"}
-                            {valuesUser.surnName !== '' ? valuesUser.surnName[0] : "S"}
+                            {information.name !== '' ? information.name[0] : "N"}
+                            {information.surnName !== '' ? information.surnName[0] : "S"}
                         </div>    
                     </div>
                     <div
@@ -65,8 +67,8 @@ export const HomePage:FC = () => {
                             className="mb-[8px]"
                         >   
                             <div className="text-[20px] leading-[26px] font-semibold font-mont text-c_blue-primary_G800">
-                            {valuesUser.name !== '' ? valuesUser.name + ' ' : "Name "}
-                            {valuesUser.surnName !== '' ? valuesUser.surnName : "Surnname"}
+                            {information.name !== '' ? information.name + ' ' : "Name "}
+                            {information.surnName !== '' ? information.surnName : "Surnname"}
                             </div>
                         </div>
                         <div

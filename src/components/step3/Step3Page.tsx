@@ -16,15 +16,15 @@ import { useActions } from "@/app/store/hooks/useActions";
 
 export const Step3Page:FC = () => {
 
-    const { saveAbout } = useActions()
-    const { about } = useAppSelector(state => state.aboutUser)
+    const { aboutInf } = useActions()
+    const { information } = useAppSelector(state => state.signIn)
 
     const [disabled, setDisabled] = useState<boolean>(true)
     const [show, setShow] = useState<boolean>(false)
     const [error, setError] = useState<boolean>(false)
     const [req, setReq] = useState<boolean>(true)
 
-    const [debounceValue, setDebounceValue] = useState<string>(about)
+    const [debounceValue, setDebounceValue] = useState<string>(information.about)
     const debounceItem = useDebounce(debounceValue, 300)
 
     useEffect(() => {
@@ -42,7 +42,7 @@ export const Step3Page:FC = () => {
 
     const eventHandler = () => {
         setShow(true)
-        saveAbout(debounceValue)
+        aboutInf(debounceValue)
     }
 
     return(

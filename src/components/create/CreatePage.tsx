@@ -13,16 +13,15 @@ import { useActions } from "@/app/store/hooks/useActions";
 
 export const CreatePage:FC = () => {
     
-    const { saveUser } = useActions()
-    const { valuesUser } = useAppSelector(state => state.user)
+    const { information } = useAppSelector(state => state.signIn) 
 
-    const [nickName, setNickName] = useState<string>(valuesUser.nickName)
-    const [name, setName] = useState<string>(valuesUser.name)
-    const [surnName, setSurnName] = useState<string>(valuesUser.surnName)
-    const [sex, setSex] = useState<string>(valuesUser.sex)
+    const { userInf } = useActions()
+
+    const [nickName, setNickName] = useState<string>(information.nickName)
+    const [name, setName] = useState<string>(information.name)
+    const [surnName, setSurnName] = useState<string>(information.surnName)
+    const [sex, setSex] = useState<string>(information.sex)
     const [disabled, setDisabled] = useState<boolean>(false)
-
-    // console.log("sex: " + sex)
 
     useEffect(() => {
         if(name !== "" &&
@@ -31,7 +30,7 @@ export const CreatePage:FC = () => {
             sex !== ""
         ){
             setDisabled(false)
-            saveUser({nickName, name, surnName, sex})
+            userInf({nickName, name, surnName, sex})
         } else setDisabled(true)
     }, [name, nickName, surnName, sex])
 

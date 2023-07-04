@@ -5,8 +5,6 @@ import { useActions } from "@/app/store/hooks/useActions";
 
 export const CheckGroup: FC = () => {
 
-    const { elementsCheck } = useAppSelector(state => state.check)
-
     return(
         <div className="mb-[24px]">
             <div className="text-c_blue-primary_G800 defaultStyleText mb-[8px]">
@@ -32,9 +30,9 @@ interface ItemI {
 const Item:FC<ItemI> = ({id}) => {
 
     const { addElementCheck, removeElementCheck } = useActions()
-    const { elementsCheck } = useAppSelector(state => state.check)
+    const { information } = useAppSelector(state => state.signIn)
 
-    const [active, setActive] = useState<boolean>(elementsCheck.includes(id) ?? false)
+    const [active, setActive] = useState<boolean>(information.check.includes(id) ?? false)
 
     const add = () => {
         setActive(true)

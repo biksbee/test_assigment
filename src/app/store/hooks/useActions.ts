@@ -2,20 +2,10 @@ import { useDispatch } from "react-redux";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useMemo } from "react";
 
-import { authAction } from "../Features/auth/auth"
-import { userAction } from "../Features/user/user" 
-import { advageAction } from "../Features/advantages/advantages";
-import { checkAction } from "../Features/check/check";
-import { radioAction } from "../Features/radio/radio";
-import { aboutAction } from "../Features/about/about"
+import { informationAction } from "../Features/signIn/signin";
 
 const rootActions = {
-    ...authAction,
-    ...userAction,
-    ...advageAction,
-    ...checkAction,
-    ...radioAction,
-    ...aboutAction,
+    ...informationAction
 }
 
 export const useActions = () => {

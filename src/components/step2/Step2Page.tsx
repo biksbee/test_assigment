@@ -14,21 +14,19 @@ import { useAppSelector } from "@/app/store/hooks/useType";
 
 const Step2Page:FC = () => {
 
-    const { elementsAdvantages } = useAppSelector(state => state.advantages)
-    const { elementsCheck } = useAppSelector(state => state.check)
-    const { elementsRadio } = useAppSelector(state => state.radio)
+    const { information } = useAppSelector(staet => staet.signIn)
 
     const [disabled, setDisabled] = useState<boolean>(true)
     const [saveValue, setSaveValue] = useState<boolean>(false)
 
     useEffect(() => {
         if(
-            elementsAdvantages.length >= 3 && !elementsAdvantages.includes("") &&
-            elementsCheck.length !== 0 && elementsRadio !== null
+            information.advantages.length >= 3 && !information.advantages.includes("") &&
+            information.check.length !== 0 && information.radio !== null
         ){
             setDisabled(false)
         } else setDisabled(true)
-    }, [elementsAdvantages, elementsCheck, elementsRadio])
+    }, [information.advantages, information.check, information.radio])
 
     const eventHandler = () => {
             setSaveValue(true)

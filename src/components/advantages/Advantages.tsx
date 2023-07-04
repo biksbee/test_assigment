@@ -16,13 +16,8 @@ interface AdvantagesI {
 
 export const Advantages:FC<AdvantagesI> = () => {
 
-
     const { addElement } = useActions()
-    const { elementsAdvantages } = useAppSelector(state => state.advantages)
-
-    const clearStorage = () => {
-        localStorage.clear()
-    }
+    const { information } = useAppSelector(state => state.signIn)
 
     return(
         <div>
@@ -33,7 +28,7 @@ export const Advantages:FC<AdvantagesI> = () => {
                 id="advantages group"
                 className="flex flex-col max-h-[300px] overflow-auto"
             > 
-                {elementsAdvantages.map((item, index) => (
+                {information.advantages.map((item, index) => (
                         <div 
                             key={index}
                             className={""}
@@ -81,12 +76,12 @@ const ItemInput:FC<InputI> = ({
     icon,
 }) => {
 
-    const { elementsAdvantages } = useAppSelector(state => state.advantages)
+    const { information } = useAppSelector(state => state.signIn)
     const { removeElement, writeElement } = useActions()
 
 
     const [error, setError] = useState<boolean>(false)
-    const [debounceValue, setDebounceValue] = useState<string>(elementsAdvantages[index])
+    const [debounceValue, setDebounceValue] = useState<string>(information.advantages[index])
     const debounceItem:string = useDebounce(debounceValue, 1000)
 
     useEffect(() => {
@@ -101,7 +96,7 @@ const ItemInput:FC<InputI> = ({
     }, [debounceItem])
 
     useEffect(() => {
-        if(debounceItem !== elementsAdvantages[index]){
+        if(debounceItem !== information.advantages[index]){
             writeElement({debounceItem, index})
         }
     }, [debounceItem])

@@ -7,9 +7,9 @@ import { useActions } from "@/app/store/hooks/useActions";
 export const RadioGorup: FC = () => {
     
     const { changeElementRadio} = useActions()
-    const { elementsRadio } = useAppSelector(state => state.radio)
+    const { information } = useAppSelector(state => state.signIn)
 
-    const [checked, setChecked] = useState<number>(elementsRadio)
+    const [checked, setChecked] = useState<number>(information.radio)
 
 
     useEffect(() => {
